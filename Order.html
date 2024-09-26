@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI定制香水</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2e2e2e; /* 深灰色背景 */
+            color: #fff; /* 将所有文字调整为白色 */
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #fff; /* 标题改为白色 */
+            font-size: 2.5rem;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #fff; /* 标签文字为白色 */
+        }
+
+        input, textarea, button, select {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc; /* 统一按钮边框 */
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        /* 表单元素背景色 */
+        input, textarea, select {
+            background-color: #444; /* 表单输入框和选择框的深灰色背景 */
+            color: #fff; /* 输入框内文字为白色 */
+        }
+
+        /* 按钮样式 - 藏青色带细白色边框 */
+        button {
+            background-color: #001f3f; /* 藏青色背景 */
+            color: white;
+            cursor: pointer;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            border: 1px solid #fff; /* 白色细边框 */
+        }
+
+        button:hover {
+            background-color: #001633; /* 鼠标悬停时的更深藏青色 */
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #444; /* 结果区域的深灰色背景 */
+            border-radius: 10px;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        /* 图片美化样式 */
+        .image-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .image-container img {
+            width: 100%;
+            max-width: 600px; /* 设定图片的最大宽度 */
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-caption {
+            text-align: center;
+            font-size: 1rem;
+            margin-top: 10px;
+            color: #ccc; /* 图片说明文字为浅灰色 */
+        }
+
+        /* 第二部分样式 */
+        .u-section-9 {
+            background-color: #666;
+            padding: 50px 0;
+            text-align: center;
+        }
+        .u-text-1 {
+            font-size: 2rem;
+            color: #fff;
+        }
+        .u-line-1 {
+            border-top: 3px solid #001f3f; /* 横线改为藏青色 */
+            width: 100px;
+            margin: 20px auto;
+        }
+        .u-text-2 {
+            font-size: 1.2rem;
+            color: #fff;
+            margin-bottom: 30px;
+        }
+        .u-form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .u-form .u-btn-submit {
+            background-color: #001f3f; /* 藏青色背景 */
+            color: #fff;
+            border: 1px solid #fff; /* 按钮添加白色边框 */
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .u-form .u-btn-submit:hover {
+            background-color: #001633; /* 鼠标悬停时的更深藏青色 */
+        }
+        .u-form .u-form-group {
+            margin-bottom: 20px;
+        }
+        .u-form .u-form-send-message {
+            color: #fff;
+            font-size: 1rem;
+            display: none;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 第一部分 - AI定制香水表单 -->
+    <h1>AI定制香水</h1>
+
+    <!-- 图片插入部分 -->
+    <div class="image-container">
+        <!-- 这里你可以更换为自己的图片路径 -->
+        <img src="images/Perfume1.jpg" alt="Perfume1">
+        <div class="image-caption">为您量身定制的香水体验</div>
+    </div>
+
+    <form id="perfumeForm">
+        <label for="preferences">请描述您对香水的喜好:</label>
+        <textarea id="preferences" rows="2" placeholder="示例，我喜欢清新的柑橘香气中略带一点薰衣草香…"></textarea>
+
+        <label for="occasion">您希望在何种场合使用它?</label>
+        <input type="text" id="occasion" placeholder="示例，日常穿搭，特殊场合">
+
+        <label for="intensity">香味选择:</label>
+        <select id="intensity">
+            <option value="light">淡香</option>
+            <option value="strong">浓香</option>
+        </select>
+
+        <button type="button" onclick="getCustomPerfume()">生成您的香水！</button>
+    </form>
+
+    <div id="result"></div>
+
+    <!-- 第二部分 - 我们怎样找到您 -->
+    <section class="u-section-9" id="carousel_240d">
+        <div class="u-sheet u-sheet-1">
+            <h2 class="u-text-1">我们怎样找到您</h2>
+            <div class="u-line-1"></div>
+            <p class="u-text-2">用户描述所需的香水体验后，网站会精准配置原料，并寄售定制的香水给用户。</p>
+
+            <!-- 第一个表单 -->
+            <div class="u-form u-form-1">
+                <form action="https://forms.nicepagesrv.com/v2/form/process" method="POST" class="u-form-horizontal u-form-spacing-15">
+                    <div class="u-form-group">
+                        <input type="text" placeholder="请输入您的地址" name="text" required>
+                    </div>
+                    <div class="u-form-group">
+                        <button type="submit" class="u-btn-submit">提交地址</button>
+                    </div>
+                    <div class="u-form-send-message u-form-send-success">感谢！信息已发送。</div>
+                    <div class="u-form-send-message u-form-send-error">发送失败，请重试。</div>
+                </form>
+            </div>
+
+            <!-- 第二个表单 -->
+            <div class="u-form u-form-2">
+                <form action="https://forms.nicepagesrv.com/v2/form/process" method="POST" class="u-form-horizontal u-form-spacing-15">
+                    <div class="u-form-group">
+                        <input type="text" placeholder="请输入您的联系方式" name="text" required>
+                    </div>
+                    <div class="u-form-group">
+                        <button type="submit" class="u-btn-submit">提交联系方式</button>
+                    </div>
+                    <div class="u-form-send-message u-form-send-success">感谢！信息已发送。</div>
+                    <div class="u-form-send-message u-form-send-error">发送失败，请重试。</div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- 页脚部分 -->
+    <footer>
+        © 2024 AI定制香水. 享受个性化的香水体验！
+    </footer>
+
+</body>
+</html>
